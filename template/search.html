@@ -1,0 +1,239 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<div>
+		{% for messages in messages %}
+			<h3> {{messages}} </h3>
+		{%endfor%}
+	</div>
+<title>NEPAL</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Travello template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static "styles/bootstrap4/bootstrap.min.css" %}">
+<link href="{% static "plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "plugins/OwlCarousel2-2.2.1/owl.carousel.css"%}">
+<link rel="stylesheet" type="text/css" href="{% static "plugins/OwlCarousel2-2.2.1/owl.theme.default.css"%}">
+<link rel="stylesheet" type="text/css" href="{% static "plugins/OwlCarousel2-2.2.1/animate.css"%}">
+<link rel="stylesheet" type="text/css" href="{% static "styles/main_styles.css"%}">
+<link rel="stylesheet" type="text/css" href="{% static "styles/responsive.css"%}">
+	<link rel="stylesheet" href="{% static "travelo/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "travelo/css/owl.carousel.min.css" %}">
+    <link rel="stylesheet" href="{% static "travelo/css/magnific-popup.css" %}">
+    <link rel="stylesheet" href="{% static "travelo/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" href="{% static "travelo/css/themify-icons.css" %}">
+    <link rel="stylesheet" href="{% static "travelo/css/nice-select.css" %}">
+    <link rel="stylesheet" href="{% static "travelo/css/flaticon.css" %}">
+    <link rel="stylesheet" href="{% static "travelo/css/gijgo.css" %}">
+    <link rel="stylesheet" href="{% static "travelo/css/animate.css" %}">
+    <link rel="stylesheet" href="{% static "travelo/css/slick.css" %}">
+    <link rel="stylesheet" href="{% static "travelo/css/slicknav.css" %}">
+    <link rel="stylesheet" href=https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+
+    <link rel="stylesheet" href="{% static "travelo/css/style.css" %}">
+    <!-- <link rel="stylesheet" href="{% static "travelo/css/responsive.css" %}"> -->
+</head>
+<body>
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid">
+                    <div class="header_bottom_border">
+                        <div class="row align-items-center">
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a href="index.html">
+                                        <img src="img/logo.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6">
+                                <div class="main-menu  d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a class="active" href="/">home</a></li>
+
+
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="seach_icon">
+                                <a data-toggle="modal" data-target="#exampleModalCenter" href="#">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+  <!-- Modal -->
+  <div  class="modal fade custom_search_pop" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="serch_form">
+            <form action="search" method="post">
+                {% csrf_token %}
+            <input type="text" name="name"  placeholder="Search" >
+            <button type="submit">search</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="super_container">
+<!-- where_togo_area_start  -->
+    <div class="where_togo_area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3">
+                    <div class="form_area">
+                        <h3>Where you want to go?</h3>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="search_wrap">
+                        <form class="search_form" action="search" method="post">
+							{% csrf_token %}
+							 <div class="input_field">
+                                <select name="name" required="required">
+                                    <option data-display="Places"></option>
+									{% for dawa in dawa %}
+                                    	<option value="{{dawa.name}}">{{dawa.name}}</option>
+									{% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="input_field">
+                                <input id="datepicker" placeholder="Date">
+                            </div>
+                            <div class="input_field">
+                                <select price="price">
+                                    <option data-display="Budget"></option>
+									{% for dawa in dawa %}
+                                    <option value="{{dawa.price}}">{{dawa.price}}</option>
+									{% endfor %}
+                                </select>
+                            </div>
+                            {% if user.is_authenticated %}
+									<div class="search_btn">
+                                	<button class="boxed-btn4 " type="submit" >Search</button>
+								{% else %}
+										<div class="search_btn">
+										<button> <a class="boxed-btn4" href="Accounts/login">Search</a> </button>
+								{% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- where_togo_area_end  -->
+<div class="destination item">
+	<div class="destination_image">
+		<img src="{{dest_data.img.url}}" alt="">
+		{% if dest_data.offer%}
+		<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+		{% endif %}
+		{% if dest_data.sittayma%}
+		<div class="spec_offer text-center"><a href="#"> Sittayma</a></div>
+		{% endif %}
+	</div>
+	<div class="destination_content">
+		<div class="destination_title"><a href="discription?field={{dest_data.name}}">{{dest_data.name}}</a></div>
+		<div class="destination_subtitle"><p>{{dest_data.desc}}</p></div>
+		<div class="destination_price">From ${{dest_data.price}}</div>
+	</div>
+</div>
+       <div class="video_area video_bg overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="video_wrap text-center">
+                        <h3>Enjoy Video</h3>
+                        <div class="video_icon">
+                           <video width="700" height="397" controls>
+                             <source src="{{dest_data.vid.url}}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+		<div class="col text-center"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </div>
+	</footer>
+</div>
+
+<script src="{% static "js/jquery-3.2.1.min.js"%}"></script>
+<script src="{% static "styles/bootstrap4/popper.js"%}"></script>
+<script src="{% static "styles/bootstrap4/bootstrap.min.js"%}"></script>
+<script src="{% static "plugins/OwlCarousel2-2.2.1/owl.carousel.js"%}"></script>
+<script src="{% static "plugins/Isotope/isotope.pkgd.min.js"%}"></script>
+<script src="{% static "plugins/scrollTo/jquery.scrollTo.min.js"%}"></script>
+<script src="{% static "plugins/easing/easing.js"%}"></script>
+<script src="{% static "plugins/parallax-js-master/parallax.min.js"%}"></script>
+<script src="{% static "js/custom.js"%}"></script>
+    <!-- link that opens popup -->
+<!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"> </script> -->
+    <!-- JS here -->
+    <script src="{% static "travelo/js/vendor/modernizr-3.5.0.min.js" %}"></script>
+    <script src="{% static "travelo/js/vendor/jquery-1.12.4.min.js" %}"></script>
+    <script src="{% static "travelo/js/popper.min.js" %}"></script>
+    <script src="{% static "travelo/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "travelo/js/owl.carousel.min.js" %}"></script>
+    <script src="{% static "travelo/js/isotope.pkgd.min.js" %}"></script>
+    <script src="{% static "travelo/js/ajax-form.js" %}"></script>
+    <script src="{% static "travelo/js/waypoints.min.js" %}"></script>
+    <script src="{% static "travelo/js/jquery.counterup.min.js" %}"></script>
+    <script src="{% static "travelo/js/imagesloaded.pkgd.min.js" %}"></script>
+    <script src="{% static "travelo/js/scrollIt.js" %}"></script>
+    <script src="{% static "travelo/js/jquery.scrollUp.min.js" %}"></script>
+    <script src="{% static "travelo/js/wow.min.js" %}"></script>
+    <script src="{% static "travelo/js/nice-select.min.js" %}"></script>
+    <script src="{% static "travelo/js/jquery.slicknav.min.js" %}"></script>
+    <script src="{% static "travelo/js/jquery.magnific-popup.min.js" %}"></script>
+    <script src="{% static "travelo/js/plugins.js" %}"></script>
+    <script src="{% static "travelo/js/gijgo.min.js" %}"></script>
+    <script src="{% static "travelo/js/slick.min.js" %}"></script>
+
+
+
+    <!--contact js-->
+    <script src="{% static "travelo/js/contact.js" %}"></script>
+    <script src="{% static "travelo/js/jquery.ajaxchimp.min.js" %}"></script>
+    <script src="{% static "travelo/js/jquery.form.js" %}"></script>
+    <script src="{% static "travelo/js/jquery.validate.min.js" %}"></script>
+    <script src="{% static "travelo/js/mail-script.js" %}"></script>
+
+
+    <script src="{% static "travelo/js/main.js" %}"></script>
+    <script>
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% block title %}
+    <h5>Sugestions</h5>
+{% endblock %}
+
+{% block body %}
+{% if artists %}
+      {% for items in artists%}
+            <p>
+                <a href="https://www.google.com/search?sxsrf={{items.name}}">{{items.name}} </a>
+            </p>
+      {% endfor %}
+{% else %}
+    <p>No artists found.</p>
+{% endif %}
+{% endblock %}
+
