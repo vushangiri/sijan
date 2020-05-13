@@ -12,6 +12,7 @@ urlpatterns = [
     #path('Api/subscribe/<int:pk>', include(router.urls)),
     path('', views.index, name= 'index'),
     path('search', views.search, name='search'),
+    path('temprature', views.temprature, name='temprature'),
     path('discription',views.discription,name='discription'),
     path('subscribe',views.subscribed,name='subscribed'),
     path('book', views.book, name='book'),
