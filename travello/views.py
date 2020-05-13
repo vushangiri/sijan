@@ -16,10 +16,27 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
+import requests
 
 
 
 # Create your views here.
+def temprature(request):
+        city= request.POST['city_data']
+        url = 'http://api.openweathermap.org/data/2.5/weather?q={}&appid=e97bb1eb01dcd766c9703c75b2014009'
+        r = requests.get(url.format(city)).json()
+        city_weather = {
+                'discription' : r['weather'][0]['description'],
+                'city' : city,
+                'temp' : r['main']['temp']-273,
+                'feels_like' : r['main']['feels_like'],
+                'temp_min' : r['main']['temp_min'],
+                'temp_max' : r['main']['temp_max'],
+                'pressure' : r['main']['pressure'],
+        }
+        context = {'city_weather' : city_weather}
+        return render(request,'temprature.html',context)
+
 def index(request):
 
     dest= Destination.objects.all()
@@ -67,6 +84,7 @@ def book(request):
         return redirect('/')
     else:
         return render(request,'book.html')
+        
 
 
 
