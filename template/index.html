@@ -34,7 +34,8 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static "travelo/css/style.css" %}">
+	<link rel="stylesheet" href="{% static "travelo/css/style.css" %}">
+	<link rel="stylesheet" href="{% static "temprature/main.css" %}">
     <!-- <link rel="stylesheet" href="{% static "travelo/css/responsive.css" %}"> -->
 </head>
 <body>
@@ -85,6 +86,9 @@
 			</div>
 		</div>
 
+		
+	
+
 	</header>
 
 	<!-- Menu -->
@@ -115,6 +119,8 @@
 	</div>
 	
 	<!-- Home -->
+
+	
 
 	<div class="home">
 		
@@ -265,6 +271,9 @@
 			</div>
 		</div>
 	</div>
+
+
+
 	<!-- Testimonials -->
 
 	<div class="testimonials" id="testimonials">
@@ -333,7 +342,7 @@
 	<!-- News -->
 <div class="col text-center">
 	<div class="section_title"><h2>MOST POPULAR PLACES</h2></div>
-</div>
+	</div>
 	<div class="news" id="news">
 		<div class="container">
 			<div class="row">
@@ -439,14 +448,33 @@
 			</div>
 		</div>
 	</div>
+</div>		
 
 	<div class="col-lg-12 text-center mt-5"></div>
 		<div class="col-md-4 offset-md-4 mt-5 border border-success pt-3">
-			<div class="input-group mb-3">
-  				<input onClick="parent.location='artists'" type="text" class="form-control" placeholder="JUST A TRY OF AJAX SEARCH ON NEXT PAGE" aria-label="Recipient's username">
-  			</div>
+			<form action="temprature" method="POST">
+				{%csrf_token%} 
+					<input  type="text" name="city_data" class="form-control" placeholder="Enter a city to know the temprature" >
+					<button type="subbnit" class="btn btn-primary">Subbmit</button>
+  			</form>
 		</div>
 
+
+		<div class="col-lg-12 text-center mt-5"></div>
+			<div class="col-md-4 offset-md-4 mt-5 border border-success pt-3">
+				<div class="input-group mb-3">
+					<input onClick="parent.location='artists'" type="text" class="form-control" placeholder="JUST A TRY OF AJAX SEARCH ON NEXT PAGE" aria-label="Recipient's username">
+
+  				</div>
+			</div>
+	
+			<div class="wrap">
+				<div class="search">
+					 <i class="fa fa-search"></i>
+				  </button>
+				</div>
+			 </div>
+		 
     <div class="video_area video_bg overlay">
         <div class="container">
             <div class="row">
