@@ -80,8 +80,8 @@ WSGI_APPLICATION = 'ababallahunxa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ababallahunxa',
-        'USER': 'sijan',
+        'NAME': 'theyatri_ababallahunxa',
+        'USER': 'theyatri_sijan',
         'PASSWORD': 'Mousetrap@35',
         'HOST': 'localhost',
         'PORT': '5432'
